@@ -12,5 +12,9 @@ export const BurgerSchema = new Schema({
     price: {
         type: Number,
         required: true
+    },
+    imgUrl: {
+        type: String,
+        required: true,
     }
 })
