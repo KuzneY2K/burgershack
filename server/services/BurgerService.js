@@ -20,6 +20,9 @@ class BurgerService {
         return burger
     }
 
+    // NODEMON INSTALL npm install -g nodemon
+    // NODEMON SCRIPT nodemon --exec npm start
+
 }
 
 export const burgerService = new BurgerService()
