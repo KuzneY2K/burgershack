@@ -8,6 +8,7 @@ export class BurgerController extends BaseController {
         this.router
             .get('', this.getBurgers)
             .post('', this.createBurger)
+            .put('/:burgerId', this.updateBurger)
     }
 
     async getBurgers(request, response, next) {
@@ -15,6 +16,18 @@ export class BurgerController extends BaseController {
             logger.log('[GETTING] BURGERS')
             const burgers = await burgerService.getBurgers()
             response.send(burgers)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async updateBurger(request, response, next) {
+        try {
+            logger.log('[UPDATING] BURGER')
+            let burgerId = request.params.burgerId
+            let burgerChanges = request.body
+            let updatedBurger = await burgerService.updateBurger(burgerId, burgerChanges)
+            response.send(updatedBurger)
         } catch (error) {
             next(error)
         }
