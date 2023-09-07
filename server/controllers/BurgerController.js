@@ -24,7 +24,9 @@ export class BurgerController extends BaseController {
 
     async deleteBurger(request, response, next) {
         try {
-
+            let burgerId = request.params.burgerId
+            let removedBurger = await burgerService.deleteBurger(burgerId)
+            response.send(removedBurger)
         } catch (error) {
             next(error)
         }

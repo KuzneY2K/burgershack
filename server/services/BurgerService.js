@@ -3,6 +3,12 @@ import { BadRequest } from "../utils/Errors.js";
 import { Logger } from "../utils/Logger.js";
 
 class BurgerService {
+    async deleteBurger(burgerId) {
+        let burgerToDelete = await dbContext.Burger.findById(burgerId)
+        if (!burgerToDelete) throw new BadRequest('Wtf? No, this is wrong.')
+        burgerToDelete.remove()
+        return `${burgerToDelete.name} was thrown in the trash. Idea scrapped.`
+    }
     async updateBurger(burgerId, burgerChanges) {
         let foundBurger = await dbContext.Burger.findById(burgerId)
         foundBurger.name = burgerChanges.name ? burgerChanges.name : foundBurger.name
